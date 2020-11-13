@@ -9,7 +9,8 @@ using PBAPI.Services;
 
 namespace PBAPI.Controllers
 {
-
+    //this can and should be refactored into partials to make it cleaner
+    //there are too many individual parts here
     [Route("api/[controller]")]
     [ApiController]
     public class PersonsController : ControllerBase
@@ -20,25 +21,10 @@ namespace PBAPI.Controllers
         {
             _personService = personService;
         }
-
+        //simple get
         [HttpGet]
         public ActionResult<List<PBEntry>> Get() => _personService.Get();
-        /*
-        //hack it
-        //public ActionResult<PBEntry> Get()
-        //{
-        //    var pbentry = new PBEntry();
-        //    pbentry.FirstName = "First";
-        //    pbentry.Surname = "Surname";
-        //    pbentry.PreferredName = "Preferred";
-        //    pbentry.PrimaryEmail = "emailaddy";
-        //    pbentry.PrimaryMobile = "numbers";
-        //
-        //    return pbentry;
-        //}
-        */
-
-
+        //overloaded with idarg
         [HttpGet("{id:length(24)}", Name = "GetPBEntry")]
         public ActionResult<PBEntry> Get(string id)
         {
@@ -51,7 +37,7 @@ namespace PBAPI.Controllers
 
             return person;
         }
-
+        //simple post
         [HttpPost]
         public ActionResult<PBEntry> Create(PBEntry pbentry)
         {
@@ -59,7 +45,7 @@ namespace PBAPI.Controllers
 
             return CreatedAtRoute("GetPBEntry", new { id = pbentry.Id.ToString() }, pbentry);
         }
-
+        //post with id to update
         [HttpPut("{id:length(24)}")]
         public IActionResult Update(string id, PBEntry pbentryIn)
         {
@@ -74,7 +60,7 @@ namespace PBAPI.Controllers
 
             return NoContent();
         }
-
+        //a delete
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
@@ -90,11 +76,4 @@ namespace PBAPI.Controllers
             return NoContent();
         }
     }
-    //  public class PersonsController : Controller
-    //  {
-    //     public IActionResult Index()
-    //     {
-    //         return View();
-    //     }
-    // }
 }
