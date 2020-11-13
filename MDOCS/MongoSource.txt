@@ -1,0 +1,2 @@
+The mongodb is setup on 27017 as a simple local db
+the source file was the csv for the three test records.
