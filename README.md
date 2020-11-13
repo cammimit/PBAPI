@@ -9,3 +9,8 @@
 #
 # using the bog standard dotnetcore webapi templates
 # clean and simple
+
+#in the MDOCS folder are some documents
+# 1. the csv for the mongodb source
+# 2. screenshot of the rendered swagger api
+# 3. notes about the mongo db
